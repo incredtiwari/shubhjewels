@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Kundan Necklace Set",
+    "category": "necklaces",
+    "price": 12500,
+    "image": "https://images.unsplash.com/photo-1608043152266-1451ab6f98fc?ixlib=rb-4.0.3&w=800&q=80",
+    "description": "Pure silver kundan necklace with matching earrings"
+  },
+  {
+    "id": 2,
+    "name": "Polki Bangles",
+    "category": "bangles",
+    "price": 8500,
+    "image": "https://images.unsplash.com/photo-1608666829543-1fa0469b6498?ixlib=rb-4.0.3&w=800&q=80",
+    "description": "Set of 8 polki silver bangles"
+  },
+  {
+    "id": 3,
+    "name": "Temple Ring",
+    "category": "rings",
+    "price": 3200,
+    "image": "https://images.unsplash.com/photo-1583482354228-1b7a6e0e7f84?ixlib=rb-4.0.3&w=800&q=80",
+    "description": "925 silver temple design ring"
+  },
+  {
+    "id": 4,
+    "name": "Chandelier Earrings",
+    "category": "necklaces",
+    "price": 4500,
+    "image": "https://images.unsplash.com/photo-1578898784014-41d3e6e062c5?ixlib=rb-4.0.3&w=800&q=80",
+    "description": "Handcrafted chandelier drop earrings"
+  }
+]

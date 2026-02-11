@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubh Jewels - Pure Silver Jewellery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <span class="close-cart">&times;</span>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: ₹<span id="cartTotal">0</span></strong>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">Shubh Jewels</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop" class="shop-link">Shop</a></li>
+                <li><a href="#necklaces">Necklaces</a></li>
+                <li><a href="#bangles">Bangles</a></li>
+                <li><a href="#rings">Rings</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="cartBtn" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount">0</span>
+                </button>
+                <a href="tel:+919876543210" class="header-cta">Call Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Exquisite Silver Jewellery</h1>
+            <p>Handcrafted with love and tradition. Every piece tells a story of elegance and purity.</p>
+            <a href="#shop" class="hero-cta">Discover Collection</a>
+        </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading-spinner">Loading...</div>
+
+    <!-- Collections -->
+    <section id="shop" class="collections">
+        <h2 class="section-title">Our Collections</h2>
+        <div class="category-tabs">
+            <button class="tab-btn active" data-category="all">All</button>
+            <button class="tab-btn" data-category="necklaces">Necklaces</button>
+            <button class="tab-btn" data-category="bangles">Bangles</button>
+            <button class="tab-btn" data-category="rings">Rings</button>
+        </div>
+        <div id="productsGrid" class="collections-grid"></div>
+    </section>
+
+    <!-- Main CTA -->
+    <section class="main-cta">
+        <h2>Ready to Shine?</h2>
+        <p>10% OFF your first order • Limited Time Only</p>
+        <button id="shopNowBtn" class="hero-cta">Shop Now</button>
+    </section>
+
+    <!-- Footer (same as before) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Shubh Jewels</h4>
+                <p>Prayagraj's finest silver jewellery. Pure 925 silver, handcrafted with tradition.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Home</a><a href="#">Collections</a><a href="#">Necklaces</a>
+                <a href="#">Bangles</a><a href="#">Rings</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Prayagraj, Uttar Pradesh</p>
+                <a href="tel:+919876543210"><i class="fas fa-phone"></i> +91 98765 43210</a>
+                <a href="mailto:info@shubhjewels.in"><i class="fas fa-envelope"></i> info@shubhjewels.in</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Shubh Jewels. Crafted with ❤️ in Prayagraj, Uttar Pradesh</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/919876543210?text=Hi%20Shubh%20Jewels!" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Fullstack JavaScript
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let products = [];
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartModal = document.getElementById('cartModal');
+        const cartCount = document.getElementById('cartCount');
+        const loading = document.getElementById('loading');
+        const categoryTabs = document.querySelectorAll('.tab-btn');
+
+        // Fetch Products from Backend API
+        async function fetchProducts(category = 'all') {
+            try {
+                loading.style.display = 'flex';
+                const url = category === 'all' ? '/api/products' : `/api/products/${category}`;
+                const response = await fetch(url);
+                products = await response.json();
+                renderProducts(products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // Render Products
+        function renderProducts(productsToShow) {
+            productsGrid.innerHTML = productsToShow.map(product => `
+                <div class="collection-card" data-id="${product.id}">
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="collection-card-content">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">₹${product.price.toLocaleString()}</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add to Cart
+        async function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // Check if already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            
+            // Send to backend (optional)
+            try {
+                await fetch('/api/cart/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: productId, quantity: 1 })
+                });
+            } catch (error) {
+                console.log('Cart sync failed, using local storage');
+            }
+
+            showNotification('Added to cart!', 'success');
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'inline' : 'none';
+        }
+
+        // Category Tabs
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const category = tab.dataset.category;
+                fetchProducts(category);
+            });
+        });
+
+        // Cart Modal
+        cartBtn.addEventListener('click', () => {
+            renderCartModal();
+            cartModal.style.display = 'flex';
+        });
+
+        document.querySelector('.close-cart').addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        function renderCartModal() {
+            const cartItemsEl = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<p>Your cart is empty</p>';
+                totalEl.textContent = '0';
+                return;
+            }
+
+            cartItemsEl.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div>
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price.toLocaleString()} x ${item.quantity}</p>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})">Remove</button>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            totalEl.textContent = total.toLocaleString();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            renderCartModal();
+        }
+
+        function showNotification(message, type = 'info') {
+            // Simple toast notification
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchProducts();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
