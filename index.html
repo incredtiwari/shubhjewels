@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,44 +6,354 @@
     <title>Shubh Jewels - Pure Silver Jewellery</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background-color: #fafafa;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e8b923 0%, #f4d03f 50%, #d68910 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c2c2c;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #e8b923, #f4d03f);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #e8b923;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, #e8b923 0%, #f4d03f 100%);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(232,185,35,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(232,185,35,0.5);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(135deg, 
+                rgba(232,185,35,0.1) 0%, 
+                rgba(244,208,63,0.05) 50%, 
+                rgba(216,137,16,0.1) 100%),
+                url('https://images.unsplash.com/photo-1608043152266-1451ab6f98fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            color: #2c2c2c;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.4);
+            color: #e8b923;
+        }
+
+        /* Collections */
+        .collections {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #2c2c2c;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #e8b923, #f4d03f);
+            margin: 1rem auto 0;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .collection-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(232,185,35,0.1);
+        }
+
+        .collection-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            border-color: rgba(232,185,35,0.3);
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .collection-card-content {
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .collection-card h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #e8b923 0%, #f4d03f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* CTA */
+        .main-cta {
+            background: linear-gradient(135deg, #e8b923 0%, #f4d03f 50%, #d68910 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .main-cta h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            color: #e0e0e0;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Crimson Text', serif;
+            margin-bottom: 1.5rem;
+            color: #f4d03f;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(232,185,35,0.2);
+            color: #e8b923;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #e8b923;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 65px;
+            height: 65px;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
+            50% { box-shadow: 0 8px 25px rgba(37,211,102,0.7); }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .collections { padding: 4rem 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Cart Modal -->
-    <div id="cartModal" class="cart-modal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>Shopping Cart</h3>
-                <span class="close-cart">&times;</span>
-            </div>
-            <div id="cartItems" class="cart-items"></div>
-            <div class="cart-total">
-                <strong>Total: ₹<span id="cartTotal">0</span></strong>
-            </div>
-            <button class="checkout-btn">Checkout</button>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
             <a href="#" class="logo">Shubh Jewels</a>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#shop" class="shop-link">Shop</a></li>
+                <li><a href="#shop">Shop</a></li>
                 <li><a href="#necklaces">Necklaces</a></li>
                 <li><a href="#bangles">Bangles</a></li>
                 <li><a href="#rings">Rings</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="header-actions">
-                <button id="cartBtn" class="cart-btn">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span id="cartCount">0</span>
-                </button>
-                <a href="tel:+919876543210" class="header-cta">Call Now</a>
-            </div>
+            <a href="tel:+919876543210" class="header-cta">Call Now</a>
         </nav>
     </header>
 
@@ -57,29 +366,42 @@
         </div>
     </section>
 
-    <!-- Loading Spinner -->
-    <div id="loading" class="loading-spinner">Loading...</div>
-
     <!-- Collections -->
     <section id="shop" class="collections">
         <h2 class="section-title">Our Collections</h2>
-        <div class="category-tabs">
-            <button class="tab-btn active" data-category="all">All</button>
-            <button class="tab-btn" data-category="necklaces">Necklaces</button>
-            <button class="tab-btn" data-category="bangles">Bangles</button>
-            <button class="tab-btn" data-category="rings">Rings</button>
+        <div class="collections-grid">
+            <a href="#" class="collection-card">
+                <img src="https://images.unsplash.com/photo-1608043152266-1451ab6f98fc?ixlib=rb-4.0.3&fit=crop&w=800&q=80" alt="Necklaces">
+                <div class="collection-card-content">
+                    <h3>Silver Necklaces</h3>
+                    <p>Elegance that captures every moment</p>
+                </div>
+            </a>
+            <a href="#" class="collection-card">
+                <img src="https://images.unsplash.com/photo-1608666829543-1fa0469b6498?ixlib=rb-4.0.3&fit=crop&w=800&q=80" alt="Bangles">
+                <div class="collection-card-content">
+                    <h3>Designer Bangles</h3>
+                    <p>Timeless beauty for every wrist</p>
+                </div>
+            </a>
+            <a href="#" class="collection-card">
+                <img src="https://images.unsplash.com/photo-1583482354228-1b7a6e0e7f84?ixlib=rb-4.0.3&fit=crop&w=800&q=80" alt="Rings">
+                <div class="collection-card-content">
+                    <h3>Delicate Rings</h3>
+                    <p>Perfect circle of love and commitment</p>
+                </div>
+            </a>
         </div>
-        <div id="productsGrid" class="collections-grid"></div>
     </section>
 
-    <!-- Main CTA -->
+    <!-- CTA -->
     <section class="main-cta">
         <h2>Ready to Shine?</h2>
         <p>10% OFF your first order • Limited Time Only</p>
-        <button id="shopNowBtn" class="hero-cta">Shop Now</button>
+        <a href="tel:+919876543210" class="hero-cta" style="background: rgba(255,255,255,0.95); color: #2c2c2c; margin-top: 1rem; display: inline-block;">Shop Now</a>
     </section>
 
-    <!-- Footer (same as before) -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -93,8 +415,11 @@
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
-                <a href="#">Home</a><a href="#">Collections</a><a href="#">Necklaces</a>
-                <a href="#">Bangles</a><a href="#">Rings</a>
+                <a href="#">Home</a>
+                <a href="#">Collections</a>
+                <a href="#">Necklaces</a>
+                <a href="#">Bangles</a>
+                <a href="#">Rings</a>
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
@@ -103,432 +428,11 @@
                 <a href="mailto:info@shubhjewels.in"><i class="fas fa-envelope"></i> info@shubhjewels.in</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Shubh Jewels. Crafted with ❤️ in Prayagraj, Uttar Pradesh</p>
-        </div>
     </footer>
 
     <!-- WhatsApp Float -->
     <a href="https://wa.me/919876543210?text=Hi%20Shubh%20Jewels!" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-
-    <script>
-        // Fullstack JavaScript
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let products = [];
-
-        // DOM Elements
-        const productsGrid = document.getElementById('productsGrid');
-        const cartBtn = document.getElementById('cartBtn');
-        const cartModal = document.getElementById('cartModal');
-        const cartCount = document.getElementById('cartCount');
-        const loading = document.getElementById('loading');
-        const categoryTabs = document.querySelectorAll('.tab-btn');
-
-        // Fetch Products from Backend API
-        async function fetchProducts(category = 'all') {
-            try {
-                loading.style.display = 'flex';
-                const url = category === 'all' ? '/api/products' : `/api/products/${category}`;
-                const response = await fetch(url);
-                products = await response.json();
-                renderProducts(products);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            } finally {
-                loading.style.display = 'none';
-            }
-        }
-
-        // Render Products
-        function renderProducts(productsToShow) {
-            productsGrid.innerHTML = productsToShow.map(product => `
-                <div class="collection-card" data-id="${product.id}">
-                    <img src="${product.image}" alt="${product.name}">
-                    <div class="collection-card-content">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <div class="product-price">₹${product.price.toLocaleString()}</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Add to Cart
-        async function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            // Check if already in cart
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartUI();
-            
-            // Send to backend (optional)
-            try {
-                await fetch('/api/cart/add', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id: productId, quantity: 1 })
-                });
-            } catch (error) {
-                console.log('Cart sync failed, using local storage');
-            }
-
-            showNotification('Added to cart!', 'success');
-        }
-
-        // Update Cart UI
-        function updateCartUI() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            cartCount.style.display = totalItems > 0 ? 'inline' : 'none';
-        }
-
-        // Category Tabs
-        categoryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                categoryTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                const category = tab.dataset.category;
-                fetchProducts(category);
-            });
-        });
-
-        // Cart Modal
-        cartBtn.addEventListener('click', () => {
-            renderCartModal();
-            cartModal.style.display = 'flex';
-        });
-
-        document.querySelector('.close-cart').addEventListener('click', () => {
-            cartModal.style.display = 'none';
-        });
-
-        function renderCartModal() {
-            const cartItemsEl = document.getElementById('cartItems');
-            const totalEl = document.getElementById('cartTotal');
-            
-            if (cart.length === 0) {
-                cartItemsEl.innerHTML = '<p>Your cart is empty</p>';
-                totalEl.textContent = '0';
-                return;
-            }
-
-            cartItemsEl.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div>
-                        <h4>${item.name}</h4>
-                        <p>₹${item.price.toLocaleString()} x ${item.quantity}</p>
-                    </div>
-                    <button onclick="removeFromCart(${item.id})">Remove</button>
-                </div>
-            `).join('');
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            totalEl.textContent = total.toLocaleString();
-        }
-
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartUI();
-            renderCartModal();
-        }
-
-        function showNotification(message, type = 'info') {
-            // Simple toast notification
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchProducts();
-            updateCartUI();
-        });
-    </script>
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shubh Jewels - Pure Silver Jewellery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <!-- Cart Modal -->
-    <div id="cartModal" class="cart-modal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>Shopping Cart</h3>
-                <span class="close-cart">&times;</span>
-            </div>
-            <div id="cartItems" class="cart-items"></div>
-            <div class="cart-total">
-                <strong>Total: ₹<span id="cartTotal">0</span></strong>
-            </div>
-            <button class="checkout-btn">Checkout</button>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav-container">
-            <a href="#" class="logo">Shubh Jewels</a>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#shop" class="shop-link">Shop</a></li>
-                <li><a href="#necklaces">Necklaces</a></li>
-                <li><a href="#bangles">Bangles</a></li>
-                <li><a href="#rings">Rings</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="cartBtn" class="cart-btn">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span id="cartCount">0</span>
-                </button>
-                <a href="tel:+919876543210" class="header-cta">Call Now</a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Exquisite Silver Jewellery</h1>
-            <p>Handcrafted with love and tradition. Every piece tells a story of elegance and purity.</p>
-            <a href="#shop" class="hero-cta">Discover Collection</a>
-        </div>
-    </section>
-
-    <!-- Loading Spinner -->
-    <div id="loading" class="loading-spinner">Loading...</div>
-
-    <!-- Collections -->
-    <section id="shop" class="collections">
-        <h2 class="section-title">Our Collections</h2>
-        <div class="category-tabs">
-            <button class="tab-btn active" data-category="all">All</button>
-            <button class="tab-btn" data-category="necklaces">Necklaces</button>
-            <button class="tab-btn" data-category="bangles">Bangles</button>
-            <button class="tab-btn" data-category="rings">Rings</button>
-        </div>
-        <div id="productsGrid" class="collections-grid"></div>
-    </section>
-
-    <!-- Main CTA -->
-    <section class="main-cta">
-        <h2>Ready to Shine?</h2>
-        <p>10% OFF your first order • Limited Time Only</p>
-        <button id="shopNowBtn" class="hero-cta">Shop Now</button>
-    </section>
-
-    <!-- Footer (same as before) -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Shubh Jewels</h4>
-                <p>Prayagraj's finest silver jewellery. Pure 925 silver, handcrafted with tradition.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Home</a><a href="#">Collections</a><a href="#">Necklaces</a>
-                <a href="#">Bangles</a><a href="#">Rings</a>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Prayagraj, Uttar Pradesh</p>
-                <a href="tel:+919876543210"><i class="fas fa-phone"></i> +91 98765 43210</a>
-                <a href="mailto:info@shubhjewels.in"><i class="fas fa-envelope"></i> info@shubhjewels.in</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Shubh Jewels. Crafted with ❤️ in Prayagraj, Uttar Pradesh</p>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/919876543210?text=Hi%20Shubh%20Jewels!" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script>
-        // Fullstack JavaScript
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let products = [];
-
-        // DOM Elements
-        const productsGrid = document.getElementById('productsGrid');
-        const cartBtn = document.getElementById('cartBtn');
-        const cartModal = document.getElementById('cartModal');
-        const cartCount = document.getElementById('cartCount');
-        const loading = document.getElementById('loading');
-        const categoryTabs = document.querySelectorAll('.tab-btn');
-
-        // Fetch Products from Backend API
-        async function fetchProducts(category = 'all') {
-            try {
-                loading.style.display = 'flex';
-                const url = category === 'all' ? '/api/products' : `/api/products/${category}`;
-                const response = await fetch(url);
-                products = await response.json();
-                renderProducts(products);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            } finally {
-                loading.style.display = 'none';
-            }
-        }
-
-        // Render Products
-        function renderProducts(productsToShow) {
-            productsGrid.innerHTML = productsToShow.map(product => `
-                <div class="collection-card" data-id="${product.id}">
-                    <img src="${product.image}" alt="${product.name}">
-                    <div class="collection-card-content">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <div class="product-price">₹${product.price.toLocaleString()}</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Add to Cart
-        async function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            // Check if already in cart
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartUI();
-            
-            // Send to backend (optional)
-            try {
-                await fetch('/api/cart/add', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id: productId, quantity: 1 })
-                });
-            } catch (error) {
-                console.log('Cart sync failed, using local storage');
-            }
-
-            showNotification('Added to cart!', 'success');
-        }
-
-        // Update Cart UI
-        function updateCartUI() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            cartCount.style.display = totalItems > 0 ? 'inline' : 'none';
-        }
-
-        // Category Tabs
-        categoryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                categoryTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                const category = tab.dataset.category;
-                fetchProducts(category);
-            });
-        });
-
-        // Cart Modal
-        cartBtn.addEventListener('click', () => {
-            renderCartModal();
-            cartModal.style.display = 'flex';
-        });
-
-        document.querySelector('.close-cart').addEventListener('click', () => {
-            cartModal.style.display = 'none';
-        });
-
-        function renderCartModal() {
-            const cartItemsEl = document.getElementById('cartItems');
-            const totalEl = document.getElementById('cartTotal');
-            
-            if (cart.length === 0) {
-                cartItemsEl.innerHTML = '<p>Your cart is empty</p>';
-                totalEl.textContent = '0';
-                return;
-            }
-
-            cartItemsEl.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div>
-                        <h4>${item.name}</h4>
-                        <p>₹${item.price.toLocaleString()} x ${item.quantity}</p>
-                    </div>
-                    <button onclick="removeFromCart(${item.id})">Remove</button>
-                </div>
-            `).join('');
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            totalEl.textContent = total.toLocaleString();
-        }
-
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartUI();
-            renderCartModal();
-        }
-
-        function showNotification(message, type = 'info') {
-            // Simple toast notification
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchProducts();
-            updateCartUI();
-        });
-    </script>
-</body>
-</html>
-
->>>>>>> f11b12f3d9a1953e5723e5c4adbf3b3cde022f8c
